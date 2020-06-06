@@ -1,8 +1,18 @@
 package main
 
-import "fmt"
+import (
+	"flag"
+	"fmt"
+	"strings"
+)
+
+var n = flag.Bool("n", false, "omit trailing newline")
+var sep = flag.String("s", " ", "searator")
 
 func main() {
-	fmt.Println("hello world")
+	flag.Parse()
+	fmt.Println(strings.Join(flag.Args(), *sep))
+	if !*n {
+		fmt.Println("not")
+	}
 }
-
