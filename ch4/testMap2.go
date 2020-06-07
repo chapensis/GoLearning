@@ -16,6 +16,21 @@ func Count(list []string) int {
 	return m[k(list)]
 }
 
+var graph = make(map[string]map[string]bool)
+
+func addEdge(from, to string)  {
+	edges := graph[from]
+	if edges == nil {
+		edges = make(map[string]bool)
+		graph[from] = edges
+	}
+	edges[to] = true
+}
+
+func hasEdge(from, to string)  bool{
+	return graph[from][to]
+}
+
 func main() {
 	var list1 = []string{"yang", "chang"}
 	var list2 = []string{"chen", "jie", "ying"}
@@ -31,4 +46,6 @@ func main() {
 
 	fmt.Println(Count(list1))
 	fmt.Println(Count(list2))
+
+	fmt.Println(hasEdge("yang", "chang"))
 }
